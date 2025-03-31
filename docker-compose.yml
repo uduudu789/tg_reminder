@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  telegram-reminder-bot:
+    build: .
+    container_name: telegram_reminder_bot
+    environment:
+      - BOT_TOKEN=7878395503:AAFNhJcoOaGs-rYlt3UyBmTElzGe9ngGUDI
+      - CHAT_ID=72831350
+    restart: unless-stopped
+
