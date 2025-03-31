@@ -9,20 +9,23 @@ import os
 # === Configuration ===
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")  # Used for reminders
+logging.info(f"Loaded BOT_TOKEN: {'yes' if BOT_TOKEN else 'no'}")
+logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
+if not BOT_TOKEN or not CHAT_ID:
+    raise ValueError("❌ Missing BOT_TOKEN or CHAT_ID environment variable")
 YOUR_ID = int(CHAT_ID)  # Use this for command responses
 
 TIMEZONE = pytz.timezone("Etc/GMT-3")  # = GMT+3, see note below
 
 REMINDERS = [
-    ("🧼 Wash knives", time(18, 55)),
-    ("🧼 Wash knives", time(21, 35)),
-    ("🥕 Check vegetables", time(18, 30)),
-    ("📝 Check the shopping list", time(18, 15)),
-    ("🍽️ Cook dinner", time(18, 35)),
-    ("🧽 Wash the kitchen after dinner", time(21, 25)),
-    ("👕 Hang out the laundry", time(15, 30)),
-    ("🛁 Tidy up the bathroom", time(12, 35)),
-    ("🛏️ Tidy up the table and nightstand", time(19, 5)),
+    ("🧼 Wash knives", time(10, 0)),
+    ("🥕 Check vegetables", time(10, 30)),
+    ("📝 Check the shopping list", time(12, 0)),
+    ("🍽️ Cook dinner", time(17, 0)),
+    ("🧽 Wash the kitchen after dinner", time(19, 30)),
+    ("👕 Hang out the laundry", time(20, 0)),
+    ("🛁 Tidy up the bathroom", time(21, 0)),
+    ("🛏️ Tidy up the table and nightstand", time(21, 30)),
 ]
 
 # === Logging ===
