@@ -7,13 +7,16 @@ import logging
 import os
 
 # === Configuration ===
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")  # Used for reminders
-logging.info(f"Loaded BOT_TOKEN: {'yes' if BOT_TOKEN else 'no'}")
-logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
-if not BOT_TOKEN or not CHAT_ID:
-    raise ValueError("❌ Missing BOT_TOKEN or CHAT_ID environment variable")
-YOUR_ID = int(CHAT_ID)  # Use this for command responses
+#BOT_TOKEN = os.getenv("BOT_TOKEN")
+#CHAT_ID = os.getenv("CHAT_ID")  # Used for reminders
+#logging.info(f"Loaded BOT_TOKEN: {'yes' if BOT_TOKEN else 'no'}")
+#logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
+#if not BOT_TOKEN or not CHAT_ID:
+#    raise ValueError("❌ Missing BOT_TOKEN or CHAT_ID environment variable")
+#YOUR_ID = int(CHAT_ID)  # Use this for command responses
+
+BOT_TOKEN = '7878395503:AAFNhJcoOaGs-rYlt3UyBmTElzGe9ngGUDI'
+CHAT_ID = 72831350
 
 TIMEZONE = pytz.timezone("Etc/GMT-3")  # = GMT+3, see note below
 
