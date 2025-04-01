@@ -22,13 +22,20 @@ YOUR_ID = CHAT_ID  # Use this for command responses
 TIMEZONE = pytz.timezone("Etc/GMT-3")  # = GMT+3, see note below
 
 REMINDERS = [
-    ("🧼 Wash knives", time(10, 0)),
-    ("🥕 Check vegetables", time(10, 30)),
+    ("🧼 Wash knives", time(17, 55)),
+    ("🧼 Wash knives", time(18, 55)),
+    ("🧼 Wash knives", time(19, 55)),
+    ("🥕 Check vegetables", time(18, 30)),
+    ("🥕 Check vegetables", time(17, 45)),
     ("📝 Check the shopping list", time(12, 0)),
-    ("🍽️ Cook dinner", time(17, 0)),
+    ("📝 Check the shopping list", time(16, 0)),
+    ("📝 Check the shopping list", time(17, 0)),
+    ("🍽️ Cook dinner", time(18, 0)),
     ("🧽 Wash the kitchen after dinner", time(19, 30)),
-    ("👕 Hang out the laundry", time(20, 0)),
-    ("🛁 Tidy up the bathroom", time(21, 0)),
+    ("👕 Hang out the laundry", time(20, 5)),
+    ("👕 Hang out the laundry", time(16, 5)),
+    ("👕 Hang out the laundry", time(13, 5)),
+    ("🛁 Tidy up the bathroom", time(21, 5)),
     ("🛏️ Tidy up the table and nightstand", time(21, 30)),
 ]
 
