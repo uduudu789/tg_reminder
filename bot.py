@@ -1,5 +1,8 @@
 from telegram import Bot, Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram import InlineKeyboardMarkup, InlineKeyboardButton
+from telegram.ext import CallbackQueryHandler
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import time
 import pytz
@@ -23,19 +26,22 @@ TIMEZONE = pytz.timezone("Etc/GMT-3")  # = GMT+3, see note below
 
 REMINDERS = [
     ("🧼 Wash knives", time(17, 55)),
-    ("🧼 Wash knives", time(18, 55)),
-    ("🧼 Wash knives", time(19, 55)),
+    ("🧼 Wash knives", time(22, 55)),
+    ("🧼 Wash knives", time(21, 55)),
     ("🥕 Check vegetables", time(18, 30)),
-    ("🥕 Check vegetables", time(17, 45)),
-    ("📝 Check the shopping list", time(12, 0)),
+    ("🥕 Check vegetables", time(17, 50)),
+    ("📝 Check the shopping list", time(21, 45)),
     ("📝 Check the shopping list", time(16, 0)),
     ("📝 Check the shopping list", time(17, 0)),
     ("🍽️ Cook dinner", time(18, 0)),
-    ("🧽 Wash the kitchen after dinner", time(19, 30)),
-    ("👕 Hang out the laundry", time(20, 5)),
-    ("👕 Hang out the laundry", time(16, 5)),
-    ("👕 Hang out the laundry", time(13, 5)),
-    ("🛁 Tidy up the bathroom", time(21, 5)),
+    ("🧽 Wash the kitchen after dinner", time(21, 25)),
+    ("👕 Hang out the laundry", time(16, 45)),
+    ("👕 Hang out the laundry", time(18, 20)),
+    ("👕 Hang out the laundry", time(13, 25)),
+    ("👕 Hang out the laundry", time(12, 25)),
+    ("🛁 Tidy up the bathroom", time(11, 0)),
+    ("🛁 Tidy up the bathroom", time(12, 20)),
+    ("🛁 Tidy up the bathroom", time(13, 25)),
     ("🛏️ Tidy up the table and nightstand", time(21, 30)),
 ]
 
@@ -53,8 +59,23 @@ scheduler = BackgroundScheduler(timezone=TIMEZONE)
 def send_reminder(message):
     def job():
         logger.info(f"Sending reminder: {message}")
-        bot.send_message(chat_id=CHAT_ID, text=message)
+        keyboard = InlineKeyboardMarkup([[
+            InlineKeyboardButton("✅ Done", callback_data=f"done:{message}")
+        ]])
+        bot.send_message(chat_id=CHAT_ID, text=message, reply_markup=keyboard)
     return job
+
+def handle_done(update: Update, context: CallbackContext):
+    query = update.callback_query
+    query.answer()  # acknowledge click
+
+    if query.data.startswith("done:"):
+        logger.info(f"Marked done: {query.data[5:]}")
+        try:
+            context.bot.delete_message(chat_id=query.message.chat_id, message_id=query.message.message_id)
+        except Exception as e:
+            logger.error(f"Failed to delete message: {e}")
+
 
 for message, reminder_time in REMINDERS:
     scheduler.add_job(
@@ -73,6 +94,7 @@ def start(update: Update, context: CallbackContext):
         context.bot.send_message(chat_id=user_id, text="⛔ Sorry, this bot is private.")
 
 dispatcher.add_handler(CommandHandler("start", start))
+dispatcher.add_handler(CallbackQueryHandler(handle_done))
 
 # === Start Bot ===
 scheduler.start()
