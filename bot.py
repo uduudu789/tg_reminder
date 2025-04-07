@@ -10,24 +10,13 @@ import logging
 import os
 
 # === Configuration ===
-#BOT_TOKEN = os.getenv("BOT_TOKEN")
-#CHAT_ID = os.getenv("CHAT_ID")  # Used for reminders
-#logging.info(f"Loaded BOT_TOKEN: {'yes' if BOT_TOKEN else 'no'}")
-#logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
-#if not BOT_TOKEN or not CHAT_ID:
-#    raise ValueError("❌ Missing BOT_TOKEN or CHAT_ID environment variable")
-
-
-BOT_TOKEN = '7878395503:AAFNhJcoOaGs-rYlt3UyBmTElzGe9ngGUDI'
-CHAT_ID = 72831350
-
 # === Load environment variables ===
-#BOT_TOKEN = os.getenv("BOT_TOKEN")
-#CHAT_ID = os.getenv("CHAT_ID")
-logging.info(f"Loaded BOT_TOKEN: {'yes' if os.getenv('BOT_TOKEN') else 'no'}")
-logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
-print("BOT_TOKEN is:", os.getenv("BOT_TOKEN"))
-print("CHAT_ID is:", os.getenv("CHAT_ID"))
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
+#logging.info(f"Loaded BOT_TOKEN: {'yes' if os.getenv('BOT_TOKEN') else 'no'}")
+#logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
+#print("BOT_TOKEN is:", os.getenv("BOT_TOKEN"))
+#print("CHAT_ID is:", os.getenv("CHAT_ID"))
 
 YOUR_ID = CHAT_ID  # Use this for command responses
 
