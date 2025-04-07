@@ -18,8 +18,15 @@ import os
 #    raise ValueError("❌ Missing BOT_TOKEN or CHAT_ID environment variable")
 
 
-BOT_TOKEN = '7878395503:AAFNhJcoOaGs-rYlt3UyBmTElzGe9ngGUDI'
-CHAT_ID = 72831350
+#BOT_TOKEN = '7878395503:AAFNhJcoOaGs-rYlt3UyBmTElzGe9ngGUDI'
+#CHAT_ID = 72831350
+
+# === Load environment variables ===
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
+logging.info(f"Loaded BOT_TOKEN: {'yes' if BOT_TOKEN else 'no'}")
+logging.info(f"Loaded CHAT_ID: {CHAT_ID}")
+
 YOUR_ID = CHAT_ID  # Use this for command responses
 
 TIMEZONE = pytz.timezone("Etc/GMT-3")  # = GMT+3, see note below
