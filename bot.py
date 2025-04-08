@@ -86,7 +86,7 @@ for message, reminder_time in REMINDERS:
 # === Start Command ===
 def start(update: Update, context: CallbackContext):
     user_id = update.effective_user.id
-    if user_id == YOUR_ID:
+    if int(user_id) == int(YOUR_ID):
         context.bot.send_message(chat_id=user_id, text="👋 Hello! Your reminder bot is up and running.")
     else:
         context.bot.send_message(chat_id=user_id, text="⛔ Sorry, this bot is private.")
